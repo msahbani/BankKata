@@ -46,6 +46,8 @@ public List<Operation> getOperations() {
 }
 
 public void makeDeposit(BigDecimal amount) {
+	//Amount must be positive
+	if (amount.compareTo(BigDecimal.ZERO) >= 0) {
 	//modify the balance
 	balance = balance.add(amount);
 	//set the operation
@@ -55,10 +57,14 @@ public void makeDeposit(BigDecimal amount) {
 	deposit.setDate(new Date());
 	deposit.setType(OperationType.DEPOSIT);
 	this.operations.add(deposit);
+	} else {
+		throw new IllegalArgumentException("The amount of deposit must be positive");
+	}
 }
 
 public void makeWithdrawal(BigDecimal amount) {
-	
+	//Amount must be positive
+	if (amount.compareTo(BigDecimal.ZERO) >= 0) {
 	//check if the client have enough balance for the amount 
 	if (balance.compareTo(amount)>0) {
 		//modify the balance
@@ -70,6 +76,11 @@ public void makeWithdrawal(BigDecimal amount) {
 		withdrawal.setDate(new Date());
 		withdrawal.setType(OperationType.WITHDRAWAL);
 		this.operations.add(withdrawal);
+	}else {
+		System.out.print("You do not have balance for this withdrawal");
+	}
+	} else {
+		throw new IllegalArgumentException("The amount of withdrawal must be positive");
 	}
 }
 
