@@ -126,7 +126,7 @@ public class BankKataTest {
 		*/
 	
 	@Test
-	public void testHistoryDisplay() {
+	public void test_history_display() {
 		System.setOut(originalOut);
 		//create account
 		Account account = new Account();
